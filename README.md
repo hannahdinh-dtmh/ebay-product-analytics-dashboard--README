@@ -1,1 +1,53 @@
-# ebay-product-analytics-dashboard--README
+# eBay Electronics Analytics Dashboard
+
+![Python](https://img.shields.io/badge/Python-3.10+-blue?logo=python)
+![Streamlit](https://img.shields.io/badge/Streamlit-1.30+-red?logo=streamlit)
+![BeautifulSoup](https://img.shields.io/badge/BeautifulSoup4-scraping-green)
+![scikit-learn](https://img.shields.io/badge/scikit--learn-clustering-orange?logo=scikit-learn)
+
+An end-to-end data pipeline that scrapes live electronics listings from eBay, preprocesses and classifies the raw data into product families, and surfaces insights through an interactive 5-tab Streamlit dashboard — covering market overview, product analytics, outlier detection, shipping performance, and K-Means clustering.
+
+---
+
+## Features
+
+- **Live web scraping** — collects product title, price, condition, listing type, shipping cost, seller info, and location across 10 eBay pages (~2,400 listings) using a session-based browser-mimicking approach
+- **Product Family classification** — rules-based keyword classifier groups listings into 11 product families (Nintendo Switch, PlayStation, Xbox, Phones & Tablets, Cameras & Photography, Laptops & Computers, Audio, Smart Home & Wearables, TVs & Displays, PC Components, Other Electronics) for meaningful cross-product comparisons
+- **Automated preprocessing** — cleans condition fields, parses seller ratings, classifies shipping types, and extracts numeric cost values
+- **Five-tab Streamlit dashboard:**
+  - 🏠 **Market Overview** — treemap of product families by volume, family-grouped price box plots, price tier distribution, and KPI cards
+  - 📊 **Product Analytics** — condition × family heatmap, listing strategy analysis, free-shipping rates, and family deep-dive selector
+  - 🔍 **Outlier Detection** — family-aware IQR and Z-score flagging with configurable multipliers, outlier vs normal scatter, and high-value listing table
+  - 🚚 **Shipping Analysis** — free vs paid breakdown, cost distributions, price vs shipping scatter, and location analysis
+  - 🔬 **Clustering Explorer** — interactive K-Means with elbow plot and PCA 2D visualization
+
+---
+
+## Dataset
+
+`Electronics.csv` contains eBay electronics listings with the following fields:
+
+| Column | Description |
+|---|---|
+| `Title` | Product listing title |
+| `Product_Family` | Classified product family (11 categories) |
+| `Price_sold` | Listed price (USD, numeric) |
+| `Condition` | New / Pre-Owned / Refurbished / Parts Only |
+| `Listing_type` | Buy It Now / Best Offer / Auction |
+| `Shipping_cost` | Raw shipping text from listing |
+| `Shipping_cost_value` | Shipping cost (USD, numeric) |
+| `Shipping_type` | Free shipping / Paid shipping |
+| `Item_location` | Seller location |
+| `Seller_name` | eBay seller username |
+| `Seller_Rating%` | Positive feedback percentage |
+| `Seller_feedback` | Total feedback count |
+| `Link` | Direct eBay listing URL |
+| `Scraped_date` | Date the data was collected |
+
+---
+
+## Related Projects
+
+- [Olist Customer Analytics](https://github.com/hannahdinh-dtmh/olist-customer-analytics) — Delivery performance + RFM customer segmentation with logistic regression churn prediction on 99,441 Brazilian e-commerce orders
+
+
